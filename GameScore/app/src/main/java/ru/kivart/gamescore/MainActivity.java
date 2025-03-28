@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+//        При первом создании activity еще нет сохраненного состояния
+        if (savedInstanceState != null) {
+            score1 = savedInstanceState.getInt("score1");
+            score2 = savedInstanceState.getInt("score2");
+        }
+
         TextView textViewScore1 = findViewById(R.id.textViewScore1);
         TextView textViewScore2 = findViewById(R.id.textViewScore2);
 
@@ -46,5 +53,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("score1", score1);
+        outState.putInt("score2", score2);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
