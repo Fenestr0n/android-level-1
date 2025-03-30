@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewScore1;
     private TextView textViewScore2;
 
+    private void updateScore1() {
+        textViewScore1.setText(String.valueOf(score1));
+    }
+
+    private void updateScore2() {
+        textViewScore2.setText(String.valueOf(score2));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateScore1() {
-        textViewScore1.setText(String.valueOf(score1));
-    }
-
-    private void updateScore2() {
-        textViewScore2.setText(String.valueOf(score2));
-    }
-
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
 //        Log.d("MainActivity", "onSaveInstanceState");
@@ -86,9 +85,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        Log.d("MainActivity", "onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("MainActivity", "onPause");
+        super.onPause();
+    }
+
+    @Override
     protected void onStop() {
         Log.d("MainActivity", "onStop");
         super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("MainActivity", "onRestart");
+        super.onRestart();
     }
 
     @Override
